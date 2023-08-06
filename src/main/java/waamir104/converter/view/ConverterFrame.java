@@ -33,9 +33,11 @@ import waamir104.converter.controller.CurrencyAPIController;
 import java.net.HttpURLConnection;
 
 public class ConverterFrame extends JFrame{
+
+	private static final long serialVersionUID = 1L;
 	private JLabel lbAmount, lbFrom, lbTo;
 	private JTextField txtAmount;
-	private JComboBox cbFrom, cbTo;
+	private JComboBox<CurrencyNameOptionDTO> cbFrom, cbTo;
 	private JButton btnConvert, btnCancel;
 	
 	public ConverterFrame(ConverterSelectionFrame converterSelectionFrame) {
@@ -60,11 +62,11 @@ public class ConverterFrame extends JFrame{
 		return txtAmount;
 	}
 
-	public JComboBox getCbFrom() {
+	public JComboBox<CurrencyNameOptionDTO> getCbFrom() {
 		return cbFrom;
 	}
 
-	public JComboBox getCbTo() {
+	public JComboBox<CurrencyNameOptionDTO> getCbTo() {
 		return cbTo;
 	}
 
@@ -94,7 +96,7 @@ public class ConverterFrame extends JFrame{
 		this.txtAmount.setMargin(new Insets(5, 10, 5, 5));
 		this.txtAmount.setBackground(new Color(230, 232, 231));
 		
-		this.cbFrom = new JComboBox();
+		this.cbFrom = new JComboBox<CurrencyNameOptionDTO>();
 		this.cbFrom.setBounds(180, 50, 170, 35);;
 		this.cbFrom.setFont(new Font("Arial", Font.PLAIN, 14));
 		this.cbFrom.setForeground(Color.BLACK);
@@ -102,7 +104,7 @@ public class ConverterFrame extends JFrame{
 		
 		this.loadCurrencies(cbFrom);	
 		
-		this.cbTo = new JComboBox();
+		this.cbTo = new JComboBox<CurrencyNameOptionDTO>();
 		this.cbTo.setBounds(380, 50, 170, 35);;
 		this.cbTo.setFont(new Font("Arial", Font.PLAIN, 14));
 		this.cbTo.setForeground(Color.BLACK);
@@ -188,7 +190,7 @@ public class ConverterFrame extends JFrame{
 		this.dispose();
 	}
 	
-	private void loadCurrencies(JComboBox cbFrom) {
+	private void loadCurrencies(JComboBox<CurrencyNameOptionDTO> cbFrom) {
 		ArrayList<CurrencyNameOptionDTO> currenciesList = this.getCurrenciesList();
 		
 		for(CurrencyNameOptionDTO currency : currenciesList) {
@@ -196,7 +198,7 @@ public class ConverterFrame extends JFrame{
 		}
 	}
 	
-	private void loadPartialCurrencies(JComboBox cbReference, JComboBox cbToLoad) {
+	private void loadPartialCurrencies(JComboBox<CurrencyNameOptionDTO> cbReference, JComboBox<CurrencyNameOptionDTO> cbToLoad) {
 		ArrayList<CurrencyNameOptionDTO> currenciesList = this.getCurrenciesList();
 		CurrencyNameOptionDTO currencySelected = (CurrencyNameOptionDTO) cbReference.getSelectedItem();
 		
@@ -245,6 +247,7 @@ public class ConverterFrame extends JFrame{
 	}
 	
 	private void openFrame() {
-		//	TODO
+		new ConverterResultFrame(this);
+		this.dispose();
 	}
 }
