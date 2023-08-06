@@ -38,6 +38,3 @@ build/
 ### Mac OS ###
 .DS_Store
 
-src/main/java/waamir104/converter/main/Main.java
-src/main/java/waamir104/converter/view/ConverterSelectionme.java
-src/main/java/waamir104/converter/view/ConverterFrame.java
