@@ -56,6 +56,18 @@ public class ConverterFrame extends JFrame{
 		this.setVisible(true);
 	}
 	
+	public JTextField getTxtAmount() {
+		return txtAmount;
+	}
+
+	public JComboBox getCbFrom() {
+		return cbFrom;
+	}
+
+	public JComboBox getCbTo() {
+		return cbTo;
+	}
+
 	private void configureForm(Container container) {
 		this.lbAmount = new JLabel();
 		this.lbAmount.setBounds(25, 20, 130, 25);
