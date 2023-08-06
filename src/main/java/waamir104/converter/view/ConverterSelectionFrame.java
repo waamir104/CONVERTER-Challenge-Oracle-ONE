@@ -2,6 +2,9 @@ package waamir104.converter.view;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import waamir104.converter.model.ConverterSelectionOption;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
@@ -12,16 +15,17 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 
 public class ConverterSelectionFrame extends JFrame {
+	
+	private static final long serialVersionUID = 1L;
 	private JLabel lbImage, lbQuestion;
-	private JComboBox cbConverterOptions;
+	private JComboBox<ConverterSelectionOption> cbConverterOptions;
 	private JButton btnContinue;
 
 	public ConverterSelectionFrame() {
@@ -35,6 +39,7 @@ public class ConverterSelectionFrame extends JFrame {
 		container.setBackground(new Color(255, 255, 255));
 		
 		this.configureJElements(container);
+		this.configureConverterSelectionFrameActions();
 		
 		this.setSize(630, 240);
 		this.setLocationRelativeTo((Component) null);
@@ -60,10 +65,10 @@ public class ConverterSelectionFrame extends JFrame {
 		this.btnContinue.setForeground(Color.BLACK);
 		this.configureMouseEventBtn(btnContinue);
 		
-		this.cbConverterOptions = new JComboBox();
+		this.cbConverterOptions = new JComboBox<ConverterSelectionOption>();
 		this.cbConverterOptions.setBounds(290, 120, 140, 30);
 		this.cbConverterOptions.setFont(new Font("Arial", Font.PLAIN, 15));
-		this.cbConverterOptions.addItem("Divisas");
+		this.cbConverterOptions.addItem(new ConverterSelectionOption(1, "Divisas"));
 		
 		
 		container.add(this.lbImage);
@@ -73,9 +78,9 @@ public class ConverterSelectionFrame extends JFrame {
 	}
 	
 	private void configureConverterSelectionFrameActions() {
-		this.btnContinue.addMouseListener(new MouseAdapter() {
+		this.btnContinue.addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				ConverterSelectionFrame.this.openFrame();
 			}
 		});
@@ -96,6 +101,7 @@ public class ConverterSelectionFrame extends JFrame {
 	}
 	
 	private void openFrame() {
-		// TODO
+		new ConverterFrame(this);
+		this.dispose();
 	}
 }
