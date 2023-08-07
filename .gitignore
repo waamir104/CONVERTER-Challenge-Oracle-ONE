@@ -39,3 +39,4 @@ build/
 .DS_Store
 
 src/main/java/waamir104/converter/view/ConverterResultFrame.java
+src/test/java/
